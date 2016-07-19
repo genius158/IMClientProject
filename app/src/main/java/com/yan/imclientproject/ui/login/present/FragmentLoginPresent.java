@@ -39,12 +39,7 @@ public class FragmentLoginPresent extends BasePresent {
     }
 
     public boolean login() {
-        return false;
+        return xmppConnction.login(fragmentLoginView.getAcount(), fragmentLoginView.getPasswrod());
     }
-
-    public void testShow() {
-        fragmentLoginView.meakToast(fragmentLoginView.getAcount() + "==" + fragmentLoginView.getPasswrod());
-    }
-
 
 }
