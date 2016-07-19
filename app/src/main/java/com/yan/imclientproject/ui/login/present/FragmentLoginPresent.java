@@ -1,8 +1,9 @@
 package com.yan.imclientproject.ui.login.present;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
+import com.trello.rxlifecycle.FragmentEvent;
+import com.trello.rxlifecycle.RxLifecycle;
 import com.yan.imclientproject.app.BasePresent;
 import com.yan.imclientproject.app.IBaseView;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
@@ -34,6 +35,7 @@ public class FragmentLoginPresent extends BasePresent {
 
     @Override
     public void onDestroy() {
+        xmppConnction.disconnect();
         fragmentLoginView = null;
     }
 
@@ -48,6 +50,7 @@ public class FragmentLoginPresent extends BasePresent {
         Observable.create((Subscriber<? super Boolean> subscriber) -> {
             subscriber.onNext(xmppConnction.login(fragmentLoginView.getAcount(), fragmentLoginView.getPasswrod()));
         }).subscribeOn(Schedulers.io())
+                .compose(RxLifecycle.bindUntilEvent(fragmentLoginView.lifecycle(), FragmentEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(o -> {
                     if (o) {

@@ -53,11 +53,8 @@ public class FragmentLogin extends BaseFragment implements FragmentLoginView {
 
         MApplication mApplication = (MApplication) getActivity().getApplication();
 
-        mApplication.getRefWatcher().watch(this);
-
         DaggerFrgmentLoginComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
         fragmentLoginPresent.attachView(this);
-
         return view;
     }
 
