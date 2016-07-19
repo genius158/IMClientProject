@@ -79,7 +79,6 @@ public class FragmentLogin extends BaseFragment implements FragmentLoginView {
     @OnClick(R.id.fragment_login_btn_login)
     public void onClick() {
         boolean b = fragmentLoginPresent.login();
-        meakToast("islogin-" + b + "");
     }
 
     @Override
