@@ -1,7 +1,5 @@
 package com.yan.imclientproject.repository;
 
-import android.util.Log;
-
 import org.jivesoftware.smack.AbstractConnectionListener;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
@@ -10,10 +8,6 @@ import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 
 import java.io.IOException;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/7/19.
@@ -87,13 +81,7 @@ public class XmppConnctionImpl implements IXmppConnction {
             try {
                 mXmpptcpConnection.login(account, password);
                 return true;
-            } catch (XMPPException e) {
-                e.printStackTrace();
-                return false;
-            } catch (SmackException e) {
-                e.printStackTrace();
-                return false;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return false;
             }
