@@ -1,11 +1,10 @@
 package com.yan.imclientproject.ui.login.present;
 
-import android.content.SharedPreferences;
-
 import com.trello.rxlifecycle.FragmentEvent;
 import com.trello.rxlifecycle.RxLifecycle;
 import com.yan.imclientproject.app.BasePresent;
 import com.yan.imclientproject.app.IBaseView;
+import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
 import com.yan.imclientproject.ui.login.module.view.FragmentLoginView;
 import com.yan.imclientproject.ui.login.repository.AccountRepository;
@@ -23,7 +22,7 @@ import rx.schedulers.Schedulers;
 public class FragmentLoginPresent extends BasePresent {
 
     private XmppConnctionImpl xmppConnction;
-    private SharedPreferences sharedPreferences;
+    private PreferencesManager preferencesManager;
     private AccountRepository accountRepository;
     private FragmentLoginView fragmentLoginView;
 
@@ -40,10 +39,9 @@ public class FragmentLoginPresent extends BasePresent {
     }
 
     @Inject
-    public FragmentLoginPresent(XmppConnctionImpl xmppConnction, SharedPreferences sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
+    public FragmentLoginPresent(XmppConnctionImpl xmppConnction, PreferencesManager preferencesManager) {
+        this.preferencesManager = preferencesManager;
         this.xmppConnction = xmppConnction;
-        accountRepository = AccountRepository.getAccountRepository(sharedPreferences);
     }
 
     public boolean login() {

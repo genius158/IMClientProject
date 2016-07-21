@@ -2,9 +2,9 @@ package com.yan.imclientproject.di.model;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.di.scope.PerApp;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
 
@@ -42,8 +42,8 @@ public class AppModel {
 
     @Provides
     @PerApp
-    SharedPreferences getSharedPreferences() {
-        return context.getSharedPreferences("IMClientPropreties", Context.MODE_PRIVATE);
+    PreferencesManager getPreferencesManager() {
+        return new PreferencesManager(context);
     }
 
 }

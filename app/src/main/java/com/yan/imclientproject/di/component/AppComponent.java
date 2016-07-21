@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.di.model.AppModel;
 import com.yan.imclientproject.di.scope.PerApp;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
@@ -21,7 +22,7 @@ public interface AppComponent {
 
     XmppConnctionImpl getXmppConnctionImpl();
 
-    SharedPreferences getSharedPreferences();
+    PreferencesManager getPreferencesManager();
 
     Toast getToast();
 }
