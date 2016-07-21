@@ -37,7 +37,7 @@ public class BaseFragment extends RxFragment implements IBaseView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mApplication.getRefWatcher().watch(this);
+        //mApplication.getRefWatcher().watch(this);
 
     }
 }

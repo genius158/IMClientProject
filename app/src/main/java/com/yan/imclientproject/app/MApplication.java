@@ -24,6 +24,8 @@ public class MApplication extends Application {
         refWatcher = LeakCanary.install(this);
         appComponent = DaggerAppComponent.builder().appModel(new AppModel(this)).build();
 
+        refWatcher.watch(this);
+
     }
 
     public RefWatcher getRefWatcher() {
