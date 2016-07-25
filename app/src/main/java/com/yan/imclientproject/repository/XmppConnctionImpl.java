@@ -4,10 +4,16 @@ import org.jivesoftware.smack.AbstractConnectionListener;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smack.roster.Roster;
+import org.jivesoftware.smack.roster.RosterEntries;
+import org.jivesoftware.smack.roster.RosterEntry;
+import org.jivesoftware.smack.roster.RosterListener;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 
 import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Created by Administrator on 2016/7/19.
@@ -80,6 +86,21 @@ public class XmppConnctionImpl implements IXmppConnction {
         } else {
             try {
                 mXmpptcpConnection.login(account, password);
+
+                Roster roster = Roster.getInstanceFor(mXmpptcpConnection);
+
+                if (mRosterListener != null) {
+                    roster.addRosterListener(mRosterListener);
+
+                }
+
+                if (roster != null && roster.getEntries().size() > 0) {
+                    for (RosterEntry entry : roster.getEntries()) {
+                        entry.getName();
+                        entry.getUser();
+                    }
+                }
+
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -119,6 +140,34 @@ public class XmppConnctionImpl implements IXmppConnction {
 
     public void setConnectionListener(AbstractConnectionListener connectionListener) {
         this.connectionListener = connectionListener;
+    }
+
+    MRosterListener mRosterListener;
+
+    public void setmRosterListener(MRosterListener mRosterListener) {
+        this.mRosterListener = mRosterListener;
+    }
+
+    public class MRosterListener implements RosterListener {
+        @Override
+        public void entriesAdded(Collection<String> collection) {
+
+        }
+
+        @Override
+        public void entriesUpdated(Collection<String> collection) {
+
+        }
+
+        @Override
+        public void entriesDeleted(Collection<String> collection) {
+
+        }
+
+        @Override
+        public void presenceChanged(Presence presence) {
+
+        }
     }
 
 }

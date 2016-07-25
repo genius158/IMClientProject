@@ -6,8 +6,8 @@ import com.yan.imclientproject.app.BasePresent;
 import com.yan.imclientproject.app.IBaseView;
 import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
+import com.yan.imclientproject.ui.login.bean.Account;
 import com.yan.imclientproject.ui.login.module.view.FragmentLoginView;
-import com.yan.imclientproject.ui.login.repository.AccountRepository;
 
 import javax.inject.Inject;
 
@@ -23,7 +23,7 @@ public class FragmentLoginPresent extends BasePresent {
 
     private XmppConnctionImpl xmppConnction;
     private PreferencesManager preferencesManager;
-    private AccountRepository accountRepository;
+    private Account account;
     private FragmentLoginView fragmentLoginView;
 
     @Override
@@ -51,9 +51,7 @@ public class FragmentLoginPresent extends BasePresent {
                 .compose(RxLifecycle.bindUntilEvent(fragmentLoginView.lifecycle(), FragmentEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(o -> {
-                    if (o) {
                         fragmentLoginView.meakToast("islogin-" + o + "");
-                    }
                 });
         return true;
     }
