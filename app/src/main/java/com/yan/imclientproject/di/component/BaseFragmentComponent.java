@@ -2,7 +2,7 @@ package com.yan.imclientproject.di.component;
 
 import com.yan.imclientproject.app.BaseFragment;
 import com.yan.imclientproject.di.scope.PerFragment;
-import com.yan.imclientproject.ui.login.view.FragmentLogin;
+import com.yan.imclientproject.ui.login.FragmentLogin;
 
 import dagger.Component;
 

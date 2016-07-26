@@ -1,4 +1,4 @@
-package com.yan.imclientproject.ui.login.view;
+package com.yan.imclientproject.ui.login;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +12,6 @@ import com.yan.imclientproject.R;
 import com.yan.imclientproject.app.BaseFragment;
 import com.yan.imclientproject.app.MApplication;
 import com.yan.imclientproject.di.component.DaggerBaseFragmentComponent;
-import com.yan.imclientproject.ui.login.present.FragmentLoginPresent;
 
 import javax.inject.Inject;
 

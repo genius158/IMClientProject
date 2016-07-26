@@ -1,4 +1,4 @@
-package com.yan.imclientproject.ui.login.view;
+package com.yan.imclientproject.ui.login;
 
 import com.trello.rxlifecycle.FragmentEvent;
 import com.yan.imclientproject.app.mvp.IMvpView;

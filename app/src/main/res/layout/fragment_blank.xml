@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.login.view.FragmentLogin">
+    tools:context=".ui.login.FragmentLogin">
 
     <EditText
         android:id="@+id/fragment_login_input_account"

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.yan.imclientproject.R;
 import com.yan.imclientproject.app.BaseActivity;
-import com.yan.imclientproject.ui.login.view.FragmentLogin;
+import com.yan.imclientproject.ui.login.FragmentLogin;
 
 public class MainActivity extends BaseActivity {
 

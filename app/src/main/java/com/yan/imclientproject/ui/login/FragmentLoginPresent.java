@@ -1,12 +1,11 @@
-package com.yan.imclientproject.ui.login.present;
+package com.yan.imclientproject.ui.login;
 
 import com.trello.rxlifecycle.FragmentEvent;
 import com.trello.rxlifecycle.RxLifecycle;
 import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.app.mvp.BaseMvpPresenter;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
-import com.yan.imclientproject.ui.login.bean.Account;
-import com.yan.imclientproject.ui.login.view.IFragmentLoginView;
+import com.yan.imclientproject.bean.Account;
 
 import javax.inject.Inject;
 

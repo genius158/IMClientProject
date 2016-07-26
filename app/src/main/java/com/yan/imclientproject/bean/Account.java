@@ -1,4 +1,4 @@
-package com.yan.imclientproject.ui.login.bean;
+package com.yan.imclientproject.bean;
 
 
 /**

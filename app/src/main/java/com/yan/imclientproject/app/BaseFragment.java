@@ -30,7 +30,15 @@ public class BaseFragment extends RxFragment implements IMvpView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //mApplication.getRefWatcher().watch(this);
+        toastCancel();
+        mApplication.getRefWatcher().watch(this);
+    }
+
+    private void toastCancel() {
+        if (toast != null) {
+            toast.cancel();
+            toast = null;
+        }
     }
 
     @Override
