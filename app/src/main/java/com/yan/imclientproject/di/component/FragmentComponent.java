@@ -11,7 +11,7 @@ import dagger.Component;
  */
 @PerFragment
 @Component(dependencies = AppComponent.class)
-public interface BaseFragmentComponent {
+public interface FragmentComponent {
     void inject(BaseFragment baseFragment);
     void inject(FragmentLogin fragmentLogin);
 }

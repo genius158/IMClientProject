@@ -1,22 +1,21 @@
 package com.yan.imclientproject.repository;
 
+import com.yan.imclientproject.Common.UtilValue;
+import com.yan.imclientproject.Common.ConfigXmpp;
+
 import org.jivesoftware.smack.AbstractConnectionListener;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.chat.ChatManager;
 import org.jivesoftware.smack.chat.ChatManagerListener;
-import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.roster.Roster;
-import org.jivesoftware.smack.roster.RosterEntries;
 import org.jivesoftware.smack.roster.RosterEntry;
 import org.jivesoftware.smack.roster.RosterListener;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 
 import java.io.IOException;
-import java.util.Collection;
 
 /**
  * Created by Administrator on 2016/7/19.
@@ -64,9 +63,9 @@ public class XmppConnctionImpl implements IXmppConnction {
 
     private XMPPTCPConnectionConfiguration initXMPPTCPConnectionConfiguration() {
         return XMPPTCPConnectionConfiguration.builder()
-                .setHost(XmppConfig.SERVER_IP)
-                .setPort(XmppConfig.SERVER_PORT)
-                .setServiceName(XmppConfig.SERVER_NAME)
+                .setHost(ConfigXmpp.SERVER_IP)
+                .setPort(ConfigXmpp.SERVER_PORT)
+                .setServiceName(ConfigXmpp.SERVER_NAME)
                 .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
                 .setCompressionEnabled(true)
                 .setDebuggerEnabled(true)
@@ -75,6 +74,13 @@ public class XmppConnctionImpl implements IXmppConnction {
 
     @Override
     public boolean login(String account, String password) {
+        return loginCommon(account, password);
+    }
+
+    private boolean loginCommon(String accountTemp, String passwordTemp) {
+
+        if (UtilValue.isEmpty(accountTemp) || UtilValue.isEmpty(passwordTemp))
+            return false;
 
         if (!mXmpptcpConnection.isConnected()) {
             try {
@@ -88,7 +94,7 @@ public class XmppConnctionImpl implements IXmppConnction {
             return true;
         } else {
             try {
-                mXmpptcpConnection.login(account, password);
+                mXmpptcpConnection.login(accountTemp, passwordTemp, ConfigXmpp.LOGIN_RESOURSE);
                 getRosters();
 
                 return true;
@@ -101,25 +107,7 @@ public class XmppConnctionImpl implements IXmppConnction {
 
     @Override
     public boolean login() {
-        if (!mXmpptcpConnection.isConnected()) {
-            return false;
-        }
-        if (mXmpptcpConnection.isAuthenticated()) {
-            return true;
-        } else {
-            try {
-                mXmpptcpConnection.login(account, password);
-                getRosters();
-
-            } catch (XMPPException e) {
-                e.printStackTrace();
-            } catch (SmackException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
+        return loginCommon(account, password);
     }
 
     Roster roster;

@@ -2,16 +2,16 @@ package com.yan.imclientproject.ui.login;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.yan.imclientproject.Common.UtilValue;
 import com.yan.imclientproject.R;
 import com.yan.imclientproject.app.BaseFragment;
 import com.yan.imclientproject.app.MApplication;
-import com.yan.imclientproject.di.component.DaggerBaseFragmentComponent;
+import com.yan.imclientproject.di.component.DaggerFragmentComponent;
 
 import javax.inject.Inject;
 
@@ -52,24 +52,19 @@ public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
 
         MApplication mApplication = (MApplication) getActivity().getApplication();
 
-        DaggerBaseFragmentComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
+        DaggerFragmentComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
         fragmentLoginPresent.attachView(this);
         return view;
     }
 
     @Override
-    public String getAcount() {
-        if (!TextUtils.isEmpty(mEditTextAccount.getText()))
-            return mEditTextAccount.getText().toString();
-        return "";
-
+    public String getAccount() {
+        return UtilValue.getValue(mEditTextAccount.getText(), "");
     }
 
     @Override
-    public String getPasswrod() {
-        if (!TextUtils.isEmpty(mEditTextPassword.getText()))
-            return mEditTextPassword.getText().toString();
-        return "";
+    public String getPassword() {
+        return UtilValue.getValue(mEditTextPassword.getText(), "");
     }
 
     @OnClick(R.id.fragment_login_btn_login)

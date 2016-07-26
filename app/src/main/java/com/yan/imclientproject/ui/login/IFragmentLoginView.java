@@ -1,20 +1,15 @@
 package com.yan.imclientproject.ui.login;
 
-import com.trello.rxlifecycle.FragmentEvent;
-import com.yan.imclientproject.app.mvp.IMvpView;
-
-import rx.Observable;
+import com.yan.imclientproject.app.IRxFragmentView;
 
 /**
  * Created by Administrator on 2016/7/19.
  */
-public interface IFragmentLoginView extends IMvpView {
+public interface IFragmentLoginView extends IRxFragmentView {
 
-    String getAcount();
+    String getAccount();
 
-    String getPasswrod();
-
-    Observable<FragmentEvent> lifecycle();
+    String getPassword();
 
 
 }

@@ -5,15 +5,14 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.support.RxFragment;
-import com.yan.imclientproject.app.mvp.IMvpView;
-import com.yan.imclientproject.di.component.DaggerBaseFragmentComponent;
+import com.yan.imclientproject.di.component.DaggerFragmentComponent;
 
 import javax.inject.Inject;
 
 /**
  * Created by Administrator on 2016/7/19.
  */
-public class BaseFragment extends RxFragment implements IMvpView {
+public class BaseFragment extends RxFragment implements IRxFragmentView {
 
     protected MApplication mApplication;
 
@@ -24,7 +23,7 @@ public class BaseFragment extends RxFragment implements IMvpView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApplication = (MApplication) getActivity().getApplication();
-        DaggerBaseFragmentComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
+        DaggerFragmentComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
     }
 
     @Override

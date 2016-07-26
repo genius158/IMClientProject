@@ -32,7 +32,7 @@ public class FragmentLoginPresent extends BaseMvpPresenter<IFragmentLoginView> {
     public boolean login() {
         checkViewAttached();
         Observable.create((Subscriber<? super Boolean> subscriber) -> {
-            subscriber.onNext(xmppConnction.login(mMvpView.getAcount(), mMvpView.getPasswrod()));
+            subscriber.onNext(xmppConnction.login(mMvpView.getAccount(), mMvpView.getPassword()));
         }).subscribeOn(Schedulers.io())
                 .compose(RxLifecycle.bindUntilEvent(mMvpView.lifecycle(), FragmentEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
