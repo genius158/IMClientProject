@@ -1,4 +1,4 @@
-package com.yan.imclientproject.util;
+package com.yan.imclientproject.Common;
 
 import android.content.Context;
 import android.view.View;
@@ -9,8 +9,7 @@ import java.lang.reflect.Field;
 /**
  * Created by Administrator on 2016/7/20.
  */
-public class LeakManager {
-
+public class UtilLeakManager {
 
 
     public static void fixInputMethodManagerLeak(Context context) {
