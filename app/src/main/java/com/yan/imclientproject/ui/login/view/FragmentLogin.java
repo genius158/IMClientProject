@@ -1,4 +1,4 @@
-package com.yan.imclientproject.ui.login.module.view;
+package com.yan.imclientproject.ui.login.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.yan.imclientproject.R;
 import com.yan.imclientproject.app.BaseFragment;
 import com.yan.imclientproject.app.MApplication;
-import com.yan.imclientproject.ui.login.di.component.DaggerFrgmentLoginComponent;
+import com.yan.imclientproject.di.component.DaggerBaseFragmentComponent;
 import com.yan.imclientproject.ui.login.present.FragmentLoginPresent;
 
 import javax.inject.Inject;
@@ -24,7 +24,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentLogin extends BaseFragment implements FragmentLoginView {
+public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
 
     @Inject
     FragmentLoginPresent fragmentLoginPresent;
@@ -53,7 +53,7 @@ public class FragmentLogin extends BaseFragment implements FragmentLoginView {
 
         MApplication mApplication = (MApplication) getActivity().getApplication();
 
-        DaggerFrgmentLoginComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
+        DaggerBaseFragmentComponent.builder().appComponent(mApplication.getAppComponent()).build().inject(this);
         fragmentLoginPresent.attachView(this);
         return view;
     }
@@ -80,7 +80,9 @@ public class FragmentLogin extends BaseFragment implements FragmentLoginView {
 
     @Override
     public void onDestroy() {
-        fragmentLoginPresent.onDestroy();
+        fragmentLoginPresent.detachView();
         super.onDestroy();
     }
+
+
 }

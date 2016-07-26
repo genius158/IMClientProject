@@ -4,8 +4,7 @@ import android.os.Bundle;
 
 import com.yan.imclientproject.R;
 import com.yan.imclientproject.app.BaseActivity;
-import com.yan.imclientproject.ui.login.module.view.FragmentLogin;
-import com.yan.imclientproject.util.LeakManager;
+import com.yan.imclientproject.ui.login.view.FragmentLogin;
 
 public class MainActivity extends BaseActivity {
 
@@ -21,7 +20,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LeakManager.fixInputMethodManagerLeak(this);
 
     }
 }

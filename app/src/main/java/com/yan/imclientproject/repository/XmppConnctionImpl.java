@@ -4,6 +4,9 @@ import org.jivesoftware.smack.AbstractConnectionListener;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.chat.ChatManager;
+import org.jivesoftware.smack.chat.ChatManagerListener;
+import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.roster.RosterEntries;
@@ -86,20 +89,7 @@ public class XmppConnctionImpl implements IXmppConnction {
         } else {
             try {
                 mXmpptcpConnection.login(account, password);
-
-                Roster roster = Roster.getInstanceFor(mXmpptcpConnection);
-
-                if (mRosterListener != null) {
-                    roster.addRosterListener(mRosterListener);
-
-                }
-
-                if (roster != null && roster.getEntries().size() > 0) {
-                    for (RosterEntry entry : roster.getEntries()) {
-                        entry.getName();
-                        entry.getUser();
-                    }
-                }
+                getRosters();
 
                 return true;
             } catch (Exception e) {
@@ -119,6 +109,8 @@ public class XmppConnctionImpl implements IXmppConnction {
         } else {
             try {
                 mXmpptcpConnection.login(account, password);
+                getRosters();
+
             } catch (XMPPException e) {
                 e.printStackTrace();
             } catch (SmackException e) {
@@ -128,6 +120,30 @@ public class XmppConnctionImpl implements IXmppConnction {
             }
         }
         return false;
+    }
+
+    Roster roster;
+
+    private void getRosters() {
+        roster = Roster.getInstanceFor(mXmpptcpConnection);
+
+        if (mRosterListener != null) {
+            roster.addRosterListener(mRosterListener);
+
+        }
+
+        if (roster != null && roster.getEntries().size() > 0) {
+            for (RosterEntry entry : roster.getEntries()) {
+                entry.getName();
+                entry.getUser();
+            }
+        }
+    }
+
+    ChatManagerListener chatManagerListener;
+
+    public void setChatManagerListener() {
+        ChatManager.getInstanceFor(mXmpptcpConnection).addChatListener(chatManagerListener);
     }
 
     @Override
@@ -142,32 +158,11 @@ public class XmppConnctionImpl implements IXmppConnction {
         this.connectionListener = connectionListener;
     }
 
-    MRosterListener mRosterListener;
+    RosterListener mRosterListener;
 
-    public void setmRosterListener(MRosterListener mRosterListener) {
+    public void setmRosterListener(RosterListener mRosterListener) {
         this.mRosterListener = mRosterListener;
     }
 
-    public class MRosterListener implements RosterListener {
-        @Override
-        public void entriesAdded(Collection<String> collection) {
-
-        }
-
-        @Override
-        public void entriesUpdated(Collection<String> collection) {
-
-        }
-
-        @Override
-        public void entriesDeleted(Collection<String> collection) {
-
-        }
-
-        @Override
-        public void presenceChanged(Presence presence) {
-
-        }
-    }
 
 }

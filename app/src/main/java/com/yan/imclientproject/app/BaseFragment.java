@@ -2,19 +2,18 @@ package com.yan.imclientproject.app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.trello.rxlifecycle.components.support.RxFragment;
+import com.yan.imclientproject.app.mvp.IMvpView;
 import com.yan.imclientproject.di.component.DaggerBaseFragmentComponent;
-import com.yan.imclientproject.util.LeakManager;
 
 import javax.inject.Inject;
 
 /**
  * Created by Administrator on 2016/7/19.
  */
-public class BaseFragment extends RxFragment implements IBaseView {
+public class BaseFragment extends RxFragment implements IMvpView {
 
     protected MApplication mApplication;
 
@@ -29,15 +28,14 @@ public class BaseFragment extends RxFragment implements IBaseView {
     }
 
     @Override
-    public void meakToast(String msg) {
-        toast.setText(msg);
-        toast.show();
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         //mApplication.getRefWatcher().watch(this);
+    }
 
+    @Override
+    public void makeToast(String str) {
+        toast.setText(str);
+        toast.show();
     }
 }
