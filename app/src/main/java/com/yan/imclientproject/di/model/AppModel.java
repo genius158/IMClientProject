@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.hwangjr.rxbus.Bus;
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.thread.ThreadEnforcer;
 import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.di.scope.PerApp;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
@@ -17,9 +20,11 @@ import dagger.Provides;
 @Module
 public class AppModel {
     private Context context;
+    private PreferencesManager preferencesManager;
 
     public AppModel(Application context) {
         this.context = context;
+        preferencesManager = new PreferencesManager(context);
     }
 
     @Provides
@@ -31,7 +36,7 @@ public class AppModel {
     @Provides
     @PerApp
     XmppConnctionImpl getXmppConnctionImpl() {
-        return new XmppConnctionImpl();
+        return new XmppConnctionImpl(preferencesManager);
     }
 
     @Provides
@@ -43,7 +48,7 @@ public class AppModel {
     @Provides
     @PerApp
     PreferencesManager getPreferencesManager() {
-        return new PreferencesManager(context);
+        return preferencesManager;
     }
 
 }

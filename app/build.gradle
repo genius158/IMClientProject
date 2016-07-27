@@ -38,11 +38,6 @@ dependencies {
     compile files('libs/smack-im-4.1.4.jar')
     compile files('libs/smack-sasl-provided-4.1.4.jar')
     compile files('libs/smack-tcp-4.1.4.jar')
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-
-
-    compile 'com.google.code.gson:gson:2.5'
 
     //内存泄露
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
@@ -50,21 +45,26 @@ dependencies {
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
     //依赖注入
-    compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
-    compile 'com.google.dagger:dagger:2.4'
     apt 'com.google.dagger:dagger-compiler:2.4'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
 
     //网络
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+
+    //Rx
+
+
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'com.jakewharton:butterknife:8.0.1'
+    compile 'com.google.dagger:dagger:2.4'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-
-    //Rx
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'com.trello:rxlifecycle:0.6.1'
@@ -75,6 +75,4 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
     compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
     compile 'com.hwangjr.rxbus:rxbus:1.0.3'
-
-
 }

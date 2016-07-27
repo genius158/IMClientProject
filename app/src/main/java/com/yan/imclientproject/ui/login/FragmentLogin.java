@@ -1,5 +1,6 @@
 package com.yan.imclientproject.ui.login;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.yan.imclientproject.Common.UtilLeakManager;
 import com.yan.imclientproject.Common.UtilValue;
 import com.yan.imclientproject.R;
 import com.yan.imclientproject.app.BaseFragment;
 import com.yan.imclientproject.app.MApplication;
 import com.yan.imclientproject.di.component.DaggerFragmentComponent;
+import com.yan.imclientproject.ui.FragmentChange;
 
 import javax.inject.Inject;
 
@@ -24,6 +27,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
+    private FragmentChange fragmentChange;
 
     @Inject
     FragmentLoginPresent fragmentLoginPresent;
@@ -33,14 +37,15 @@ public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
     EditText mEditTextPassword;
 
 
-    public FragmentLogin() {
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentChange = (FragmentChange) context;
     }
 
-    public static FragmentLogin instance() {
-        FragmentLogin fragmentLogin = new FragmentLogin();
-        Bundle args = new Bundle();
-        fragmentLogin.setArguments(args);
-        return fragmentLogin;
+    @Override
+    public void toFragmentChat() {
+        fragmentChange.toFragmentChat();
     }
 
     @Override
@@ -69,7 +74,7 @@ public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
 
     @OnClick(R.id.fragment_login_btn_login)
     public void onClick() {
-        boolean b = fragmentLoginPresent.login();
+        fragmentLoginPresent.login();
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.hwangjr.rxbus.Bus;
 import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.di.model.AppModel;
 import com.yan.imclientproject.di.scope.PerApp;

@@ -11,5 +11,6 @@ public interface IFragmentLoginView extends IRxFragmentView {
 
     String getPassword();
 
+      void toFragmentChat();
 
 }

@@ -37,7 +37,10 @@ public class FragmentLoginPresent extends BaseMvpPresenter<IFragmentLoginView> {
                 .compose(RxLifecycle.bindUntilEvent(mMvpView.lifecycle(), FragmentEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(o -> {
-                    mMvpView.makeToast("islogin-" + o + "");
+                    if (o) {
+                        mMvpView.toFragmentChat();
+                    } else
+                        mMvpView.makeToast("islogin-" + o + " " + xmppConnction);
                 });
         return true;
     }

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">IMClientProject</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">chatContent-></string>
+
+    <string name="fragment_chat_edt_content">words yout want send</string>
+    <string name="fragment_chat_btn_content">send</string>
 </resources>

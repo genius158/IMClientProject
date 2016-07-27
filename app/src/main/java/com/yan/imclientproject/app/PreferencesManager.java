@@ -31,7 +31,8 @@ public class PreferencesManager {
     }
 
     public void addValue(String key, String value) {
-        sharedPreferences.edit().putString(key, value);
+        sharedPreferences.edit().putString(key, value).commit();
+
     }
 
     public void addValues(ContentValues contentValues) {
@@ -54,4 +55,9 @@ public class PreferencesManager {
         editor.clear();
         editor.commit();
     }
+
+    public String getStrValue(String key) {
+        return sharedPreferences.getString(key, "");
+    }
+
 }
