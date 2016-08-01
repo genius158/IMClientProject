@@ -30,6 +30,9 @@ public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
     private FragmentChange fragmentChange;
 
     @Inject
+    MApplication context;
+
+    @Inject
     FragmentLoginPresent fragmentLoginPresent;
     @BindView(R.id.fragment_login_input_account)
     EditText mEditTextAccount;
@@ -79,9 +82,9 @@ public class FragmentLogin extends BaseFragment implements IFragmentLoginView {
 
     @Override
     public void onDestroy() {
+        UtilLeakManager.fixFocusedViewLeak(context);
         fragmentLoginPresent.detachView();
         super.onDestroy();
     }
-
 
 }

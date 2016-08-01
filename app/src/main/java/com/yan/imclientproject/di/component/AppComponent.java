@@ -1,11 +1,9 @@
 package com.yan.imclientproject.di.component;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.hwangjr.rxbus.Bus;
+import com.yan.imclientproject.app.MApplication;
 import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.di.model.AppModel;
 import com.yan.imclientproject.di.scope.PerApp;
@@ -26,4 +24,6 @@ public interface AppComponent {
     PreferencesManager getPreferencesManager();
 
     Toast getToast();
+
+    MApplication getMApplication();
 }

@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.hwangjr.rxbus.Bus;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.thread.ThreadEnforcer;
+import com.yan.imclientproject.app.MApplication;
 import com.yan.imclientproject.app.PreferencesManager;
 import com.yan.imclientproject.di.scope.PerApp;
 import com.yan.imclientproject.repository.XmppConnctionImpl;
@@ -19,10 +20,10 @@ import dagger.Provides;
  */
 @Module
 public class AppModel {
-    private Context context;
+    private MApplication context;
     private PreferencesManager preferencesManager;
 
-    public AppModel(Application context) {
+    public AppModel(MApplication context) {
         this.context = context;
         preferencesManager = new PreferencesManager(context);
     }
@@ -30,6 +31,12 @@ public class AppModel {
     @Provides
     @PerApp
     Context getContext() {
+        return context;
+    }
+
+    @Provides
+    @PerApp
+    MApplication getMApplication() {
         return context;
     }
 
